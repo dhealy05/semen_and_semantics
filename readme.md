@@ -67,22 +67,22 @@ The trends are similar to what we see in the heatmap: 2008 and 2009 are close, b
 
 Consequently, to find the representative video title for the year, we can take the centroid, and find its nearest neighbor for the given year - out of the titles for say, 2010, which is the closest to "average"? They are as follows:
 
-- 2008. Hot blonde girl gets fucke...
-- 2009. Big tit blonde fuckslut na...
-- 2010. Latina starlet pounded hard
-- 2011. Hot brunette experiences anal
-- 2012. Big breasted anal fuck in a garage
-- 2013. Big Boobed Brunette Fucked
-- 2014. Jessica Jaymes POV
-- 2015. Hot Anal Madison
-- 2016. MyBabySittersClub - Blonde Teen Babysitter Helps Me Cum
-- 2017. Big Tits Blasian Teen Anal Creampie Casting
-- 2018. Stuffed MILF creams all over My cock 4K **PAWG** [FULL VID]
-- 2019. BEAUTIFUL BUSTY TEEN LOVES A HARD DICK - HARD FUCKING VOL 2
-- 2020. Slutty Daughter Sends You A Video From Her Dorm
-- 2021. Hot College Babe Fingered And Fucked ROUGH To Multiple Orgasms - BLEACHED RAW - Ep IX
-- 2022. Rough Fuck & Creampie
-- 2023. FAMILYXXX - "I Cant Resist My Stepsis Big Juicy Ass" (Mila Monet)
+- 2008: Hot blonde girl gets fucke...
+- 2009: Big tit blonde fuckslut na...
+- 2010: Latina starlet pounded hard
+- 2011: Hot brunette experiences anal
+- 2012: Big breasted anal fuck in a garage
+- 2013: Big Boobed Brunette Fucked
+- 2014: Jessica Jaymes POV
+- 2015: Hot Anal Madison
+- 2016: MyBabySittersClub - Blonde Teen Babysitter Helps Me Cum
+- 2017: Big Tits Blasian Teen Anal Creampie Casting
+- 2018: Stuffed MILF creams all over My cock 4K **PAWG** [FULL VID]
+- 2019: BEAUTIFUL BUSTY TEEN LOVES A HARD DICK - HARD FUCKING VOL 2
+- 2020: Slutty Daughter Sends You A Video From Her Dorm
+- 2021: Hot College Babe Fingered And Fucked ROUGH To Multiple Orgasms - BLEACHED RAW - Ep IX
+- 2022: Rough Fuck & Creampie
+- 2023: FAMILYXXX - "I Cant Resist My Stepsis Big Juicy Ass" (Mila Monet)
 
 This sheds some light on our previous findings:
 
@@ -147,7 +147,7 @@ Finally, let's take a look at the sexual violence trends, with incest and rape:
 
 | |
 |---------|
-| ![A](analysis_results/rape_trend.png) |
+| ![A](analysis_results/trends/rape_trend.png) |
 
 For both, an obvious jump and sustained increase. Incest is outperforming rape, as we can observe from the "step-" titles and their variants.
 
