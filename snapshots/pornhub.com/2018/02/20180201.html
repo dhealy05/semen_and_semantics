@@ -1,0 +1,81 @@
+<html>
+<head>
+	<title>Free Porn Videos &amp; Sex Movies - Porno, XXX, Porn Tube and Pussy Porn</title>
+	<link rel="shortcut icon" href="https://bi.phncdn.com/www-static/favicon.ico?cache=2018012900" />
+</head>
+<body>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" height="100%">
+	<tr>
+		<td align="center" valign="middle">
+			<img src="https://bi.phncdn.com/www-static/images/loading-loop.gif" alt="Loading" width="54" height="55">
+		</td>
+	</tr>
+</table>
+
+<script type="text/javascript">
+	document.addEventListener("DOMContentLoaded", function(event) {
+		loadXMLDoc();
+	});
+
+	function loadXMLDoc() {
+
+		var jsonUrls = {"premiumUrl":"https:\/\/www.pornhubpremium.com","regularUrl":"\/","verificationUrl":"https:\/\/www.pornhubpremium.com\/user\/login_status?ajax=1"};
+
+
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', jsonUrls.verificationUrl);
+		xhr.withCredentials = true;
+		xhr.send();
+
+		xhr.onreadystatechange = function() {
+			var DONE = 4; // readyState 4 means the request is done.
+			var OK = 200; // status 200 is a successful return.
+			if (xhr.readyState === DONE) {
+				if (xhr.status === OK) {
+					var myArr = JSON.parse(xhr.responseText);
+					if (myArr.success == 1) {
+						document.location.href = jsonUrls.premiumUrl;
+					} else {
+						deleteCookieAdvanced('premium_redirect');
+						document.location.href = jsonUrls.regularUrl;
+					}
+				}
+			}
+		}
+	}
+
+	function deleteCookieAdvanced(name, path, domain) {
+		if (getCookieAdvanced(name)) {
+			var domainName = 'pornhub.com';
+			document.cookie = name + '=' + (path ? ';path=' + path : ';path=/') + (domain ? ';domain=' + domain : ';domain=' + domainName) + ';expires=Thu, 01-Jan-1970 00:00:01 GMT';
+		}
+	}
+
+	function getCookieAdvanced(check_name) {
+		var a_all_cookies = document.cookie.split(';');
+		var a_temp_cookie = '';
+		var cookie_name = '';
+		var cookie_value = '';
+		var b_cookie_found = false;
+		for (i = 0; i < a_all_cookies.length; i++) {
+			a_temp_cookie = a_all_cookies[i].split('=');
+			cookie_name = a_temp_cookie[0].replace(/^\s+|\s+$/g, '');
+			if (cookie_name == check_name) {
+				b_cookie_found = true;
+				if (a_temp_cookie.length > 1) {
+					cookie_value = unescape(a_temp_cookie[1].replace(/^\s+|\s+$/g, ''));
+				}
+				return cookie_value;
+				break;
+			}
+			a_temp_cookie = null;
+			cookie_name = '';
+		}
+		if (!b_cookie_found) {
+			return null;
+		}
+	}
+</script>
+
+</body>
+</html>
