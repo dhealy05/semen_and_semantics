@@ -151,6 +151,12 @@ Finally, let's take a look at the sexual violence trends, with incest and rape:
 
 For both, an obvious jump and sustained increase. Incest is outperforming rape, as we can observe from the "step-" titles and their variants.
 
+| |
+|---------|
+| ![A](analysis_results/trends/animated_trends.gif) |
+
+For better visibility and a smoother trend, we can also observe the animated moving average.
+
 Run "run_trend" with an array of words of your choice to run your own analysis.
 
 ## t-SNE Clusters
@@ -258,6 +264,13 @@ Run "run_tsne" to visualize your own reference groups. By default, the script wi
 1. The mapped years
 2. The mapped years with each concept cluster individually
 3. Every cluster and the mapped years
+
+For a simpler animated analysis, show or hide different clusters to observe how the "average" moves over time:
+
+| |
+|---------|
+| ![A](analysis_results/tsne/temporal_evolution.gif) |
+
 
 ## Conclusions
 
