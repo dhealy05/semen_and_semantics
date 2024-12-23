@@ -3,6 +3,7 @@ import seaborn as sns
 import numpy as np
 from sklearn.manifold import TSNE
 from matplotlib.lines import Line2D
+import matplotlib.animation as animation
 from typing import Dict, Tuple, Optional, List
 import os
 
@@ -15,6 +16,8 @@ class EmbeddingVisualization:
         self.cached_vectors = None
 
 ##### Concepts
+
+## static points
 
     def plot_concept_trends(self,
                            yearly_stats_array: List[Dict[str, Dict[str, float]]],
@@ -71,6 +74,92 @@ class EmbeddingVisualization:
         plt.tight_layout()
         #plt.gcf()
         return fig
+
+## animated moving averages
+
+    def compute_moving_averages(self, yearly_stats_array, labels, window_size: int = 3):
+        """
+        Precompute moving averages for each trend line.
+        Returns:
+            dict: Contains original values and moving averages for each label
+        """
+        years = sorted(int(y) for y in yearly_stats_array[0].keys())
+        trends_data = {}
+
+        for yearly_stats, label in zip(yearly_stats_array, labels):
+            year_strings = [str(y) for y in years]
+            values = [yearly_stats[y_str]['normalized_rate'] for y_str in year_strings]
+
+            # Calculate moving average
+            ma_values = []
+            for i in range(len(values)):
+                if i < window_size - 1:
+                    ma_values.append(sum(values[:i+1]) / len(values[:i+1]))
+                else:
+                    ma_values.append(sum(values[i-window_size+1:i+1]) / window_size)
+
+            trends_data[label] = {
+                'years': years,
+                'values': values,
+                'ma_values': ma_values
+            }
+
+        return trends_data
+
+    def animate_trends(self,
+                      trends_data: dict,
+                      save_path: str = "../analysis_results/animated_trends.gif",
+                      fps: int = 2,
+                      window_size: int = 2):
+        """
+        Create animation using precomputed moving averages.
+        """
+        fig = plt.figure(figsize=(12, 6))
+        ax = fig.add_subplot(111)
+
+        # Calculate y-axis limits
+        all_values = []
+        for data in trends_data.values():
+            all_values.extend(data['values'])
+        y_min, y_max = min(all_values), max(all_values)
+        y_padding = (y_max - y_min) * 0.1
+
+        years = trends_data[list(trends_data.keys())[0]]['years']
+
+        def update(frame_year):
+            ax.clear()
+            for label, data in trends_data.items():
+                year_mask = [y <= frame_year for y in data['years']]
+                current_years = [y for y, m in zip(data['years'], year_mask) if m]
+                current_values = [v for v, m in zip(data['values'], year_mask) if m]
+                current_ma = [v for v, m in zip(data['ma_values'], year_mask) if m]
+
+                # Plot original data as light dots
+                ax.plot(current_years, current_values, 'o', alpha=0.3, label='_nolegend_')
+
+                # Plot moving average
+                if len(current_years) >= window_size:
+                    ax.plot(current_years, current_ma, '-',
+                           label=f"{label} ({window_size}-year MA)", linewidth=2)
+                else:
+                    ax.plot(current_years, current_values, '-',
+                           label=f"{label} ({window_size}-year MA)", linewidth=2)
+
+            ax.grid(True, alpha=0.3)
+            ax.set_xlabel('Year')
+            ax.set_ylabel('Normalized Rate (1.0 = baseline)')
+            ax.set_title(f'Concept Trends Through {frame_year}')
+            ax.set_xlim(min(years) - 0.5, max(years) + 0.5)
+            ax.set_ylim(y_min - y_padding, y_max + y_padding)
+            ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+            fig.tight_layout()
+            return ax.get_children()
+
+        anim = animation.FuncAnimation(fig, update, frames=years,
+                                     interval=1000/fps, blit=False)
+        writer = animation.PillowWriter(fps=fps)
+        anim.save(save_path, writer=writer)
+        plt.close()
 
 ##### Heatmap
 
@@ -153,6 +242,8 @@ class EmbeddingVisualization:
 
 ##### t-SNE
 
+## compute
+
     def compute_tsne_embedding(self,
                              additional_collections: Optional[Dict[str, 'EmbeddingCollection']] = None,
                              perplexity: int = 5,
@@ -196,6 +287,8 @@ class EmbeddingVisualization:
         self.cached_tsne_coords = tsne.fit_transform(vectors_array)
         self.cached_labels = all_labels
         self.cached_vectors = vectors_array
+
+## plot static points
 
     def plot_temporal_tsne(self,
                           show_years: bool = True,
@@ -291,6 +384,78 @@ class EmbeddingVisualization:
                 "y": [float(y_min), float(y_max)]
             }
         }
+
+## plot animation
+
+    def plot_temporal_tsne_frames(self,
+                                    save_path: str = "../analysis_results/temporal_evolution.gif",
+                                    show_collections: Optional[List[str]] = None,
+                                    fps: int = 2,
+                                    dpi: int = 300):
+        if self.cached_tsne_coords is None:
+            raise ValueError("Must call compute_tsne_embedding() first")
+
+        fig, ax = plt.subplots(figsize=(10, 8))
+
+        # Set consistent scale using all points
+        all_coords = self.cached_tsne_coords
+        padding = 0.1
+        x_min, x_max = all_coords[:, 0].min(), all_coords[:, 0].max()
+        y_min, y_max = all_coords[:, 1].min(), all_coords[:, 1].max()
+        x_range = x_max - x_min
+        y_range = y_max - y_min
+
+        ax.set_xlim(x_min - padding * x_range, x_max + padding * x_range)
+        ax.set_ylim(y_min - padding * y_range, y_max + padding * y_range)
+
+        # Get display mask for collections
+        display_mask = np.zeros(len(self.cached_labels), dtype=bool)
+        if show_collections:
+            for collection_label in show_collections:
+                collection_indices = [i for i, label in enumerate(self.cached_labels)
+                                   if label == collection_label]
+                display_mask[collection_indices] = True
+
+        # Plot visible reference points
+        displayed_coords = self.cached_tsne_coords[display_mask]
+        displayed_labels = np.array(self.cached_labels)[display_mask]
+
+        def update(frame):
+            ax.clear()
+            ax.set_xlim(x_min - padding * x_range, x_max + padding * x_range)
+            ax.set_ylim(y_min - padding * y_range, y_max + padding * y_range)
+
+            # Replot reference points
+            for label in set(displayed_labels):
+                mask = displayed_labels == label
+                ax.scatter(displayed_coords[mask][:, 0], displayed_coords[mask][:, 1],
+                          label=label, alpha=0.5)
+
+            # Plot years up to current frame
+            year_indices = [i for i, label in enumerate(self.cached_labels)
+                           if isinstance(label, str) and label.isdigit()
+                           and int(label) <= frame]
+
+            if year_indices:
+                year_coords = self.cached_tsne_coords[year_indices]
+                ax.plot(year_coords[:, 0], year_coords[:, 1], 'r-', alpha=0.3)
+                ax.scatter(year_coords[-1:, 0], year_coords[-1:, 1], c='red', s=100)
+
+                ax.annotate(str(frame),
+                           (year_coords[-1, 0], year_coords[-1, 1]),
+                           xytext=(5, 5), textcoords='offset points')
+
+            ax.set_title(f'Temporal Embedding Space - Year {frame}')
+            ax.legend()
+            return ax.get_children()
+
+        years = sorted([int(label) for label in self.cached_labels
+                       if isinstance(label, str) and label.isdigit()])
+        anim = animation.FuncAnimation(fig, update, frames=years,
+                                     interval=1000/fps, blit=False)
+
+        anim.save(save_path, writer='pillow', dpi=dpi)
+        plt.close()
 
 #### Save
 

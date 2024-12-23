@@ -70,6 +70,8 @@ def viz_all(collection):
     additional_collections = make_references()
     viz.compute_tsne_embedding(additional_collections=additional_collections)
 
+    # static
+
     blank_fig, analysis_results = viz.plot_temporal_tsne(show_years=True, show_collections=None)
     viz.save_fig(blank_fig, "blank")
 
@@ -79,6 +81,12 @@ def viz_all(collection):
 
     all_fig, analysis_results = viz.plot_temporal_tsne(show_years=True, show_collections=list(additional_collections.keys()))
     viz.save_fig(all_fig, "all")
+
+    # animated
+
+    viz.plot_temporal_tsne_frames(
+        show_collections=["sexual_violence", "pornstar", "violence"]
+    )
 
 def analyze(snapshots_dir: str):
 

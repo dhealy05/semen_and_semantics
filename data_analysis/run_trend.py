@@ -26,9 +26,15 @@ def concept_trends(collection, trends):
     for trend in trends:
         stats = concept_trend(trend, collection)
         yearly_stats.append(stats)
+
     viz = EmbeddingVisualization(collection)
+
+    # animated moving average, default to 2 year lookback window
+    trends_data = viz.compute_moving_averages(yearly_stats, trends, window_size=2)
+    viz.animate_trends(trends_data)
+
+    # static trend
     fig = viz.plot_concept_trends(yearly_stats, trends)
-    #plt.show()
     viz.save_fig(fig, "trend")
 
 def analyze(snapshots_dir: str):
