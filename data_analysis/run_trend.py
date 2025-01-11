@@ -21,7 +21,7 @@ def concept_trend(ref_concept, collection):
               f"{stats['proportion']:.3f}   {stats['normalized_rate']:.2f}x")
     return yearly_stats
 
-def concept_trends(collection, trends):
+def concept_trends(collection, trends, window_size=2):
     yearly_stats = []
     for trend in trends:
         stats = concept_trend(trend, collection)
@@ -30,8 +30,8 @@ def concept_trends(collection, trends):
     viz = EmbeddingVisualization(collection)
 
     # animated moving average, default to 2 year lookback window
-    trends_data = viz.compute_moving_averages(yearly_stats, trends, window_size=2)
-    viz.animate_trends(trends_data)
+    trends_data = viz.compute_moving_averages(yearly_stats, trends, window_size=window_size)
+    viz.animate_trends(trends_data, window_size=window_size)
 
     # static trend
     fig = viz.plot_concept_trends(yearly_stats, trends)
