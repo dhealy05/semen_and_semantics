@@ -16,7 +16,7 @@ The change is typical of Pornhub's progression. Violent and incestuous content h
 |---------|
 | ![A](analysis_results/trends/smoothed_rape_trend.png) |
 
-We observe three distinct eras: 2008-2009, 2010-2016, 2017-Present:
+We observe three distinct eras of titling conventions: 2008-2009, 2010-2016, 2017-Present:
 
 | |
 |---------|
