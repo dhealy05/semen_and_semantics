@@ -1,14 +1,42 @@
 # Semen and Semantics: Understanding Porn with Language Embeddings
 
-[Daniel Healy](https://www.linkedin.com/in/daniel-healy/)
+I downloaded snapshots of the Pornhub homepage from the Internet Archive, converted the titles to text embeddings, and analyzed the results.
 
-## TLDR
+Here's the average title for the first full year of Pornhub's existence, 2008:
 
-- Porn content has gotten more extreme over time
-- We can observe and quantify changes with language embeddings for video titles
-- There are three distinct eras: 2008-2009, 2010-2016, 2017-
-- We are close to semantic bedrock with respect to sexual violence: porn titles cannot become more sexually violent in their descriptions, because we lack the vocabulary
-- My hope is that this analysis can be used as evidence and encouragement to limit porn access for minors
+- "Hot blonde girl gets fucked"
+
+and here's the average title for 2023:
+
+- "FAMILYXXX - "I Cant Resist My Stepsis Big Juicy Ass" (Mila Monet)"
+
+The change is typical of Pornhub's progression. Violent and incestuous content has become more common:
+
+| |
+|---------|
+| ![A](analysis_results/trends/smoothed_rape_trend.png) |
+
+We observe three distinct eras: 2008-2009, 2010-2016, 2017-Present:
+
+| |
+|---------|
+| ![A](analysis_results/tsne_years.png) |
+
+If we plot sexually violent terms like "woman being raped", "incest", and "torture porn", we observe much stronger alignment with the 2017-Present cluster:
+
+| |
+|---------|
+| ![A](analysis_results/tsne/sexual_violence.png) |
+
+What happened?
+
+Some of the effects are pure SEO - videos are labeled with sexually violent language, even if they are not themselves actually sexually violent. But the total trend reflects the actual video contents, which have become more intense to cater to more intense tastes of the highest spending, most engaged consumers.
+
+Broadly this is because of professionalization: a shift from amateur, Youtube-style porn to professional studios with an interest in the bottom line. Interestingly, this mimics the evolution of Youtube itself as well. A broad, internet-wide shift towards monetization might be benign elsewhere, but in the porn domain, becomes a race to the bottom of sexual violence.
+
+Political efforts may have contributed to locking in some aspects of this monetization trend. FOSTA-SESTA and sundry efforts by payment processors to limit porn exposure probably helped improve the conditions of the supply side and prevented videos of minors and rape from being uploaded. That's good! But it created an unintended consequence at the expense of the demand side: professional studios started to emphasize youth and violence.
+
+Explore more detailed data and methods below.
 
 ## Data and Methods
 
@@ -270,19 +298,6 @@ For a simpler animated analysis, show or hide different clusters to observe how 
 | |
 |---------|
 | ![A](analysis_results/tsne/temporal_evolution.gif) |
-
-
-## Conclusions
-
-Some of the effects are pure SEO - videos are labeled with sexually violent language, even if they are not themselves *actually* sexually violent. But the total trend reflects the actual video contents, which have become more intense to cater to more intense tastes of the highest spending, most engaged consumers.
-
-Broadly this is because of professionalization: a shift from amateur, Youtube-style porn to professional studios with an interest in the bottom line. Interestingly, this mimics the evolution of Youtube itself as well. A broad, internet-wide shift towards monetization might be benign elsewhere, but in the porn domain, becomes a race to the bottom of sexual violence.
-
-Political efforts may have contributed to locking in some aspects of this monetization trend. FOSTA-SESTA and sundry efforts by payment processors to limit porn exposure probably helped improve the conditions of the supply side and prevented videos of minors, rape from being uploaded. That's good! But it created an unintended consequence at the expense of the demand side: professional studios started to emphasize youth and violence.
-
-The real losers here are adolescents exposed to porn at an early age. I'm generally skeptical of regulation for what adults can see, but I can't think of a good reason not to mandate a porn paywall - call it a porn tax - and thereby restrict access to credit card or bank account holders, a de facto age limit more effective than existing legislation.
-
-For a longer editorial, see [here](https://www.example.com).
 
 ## Further Work
 
