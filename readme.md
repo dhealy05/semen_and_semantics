@@ -1,8 +1,8 @@
 # Semen and Semantics: Understanding Porn with Language Embeddings
 
-I downloaded snapshots of the Pornhub homepage from the Internet Archive, converted the titles to text embeddings, and analyzed the results.
+## Summary
 
-Here's the average title for the first full year of Pornhub's existence, 2008:
+Porn content has gotten more extreme over time. Here's the average title for the first full year of Pornhub's existence, 2008:
 
 - "Hot blonde girl gets fucked"
 
@@ -10,33 +10,13 @@ and here's the average title for 2023:
 
 - "FAMILYXXX - "I Cant Resist My Stepsis Big Juicy Ass" (Mila Monet)"
 
-The change is typical of Pornhub's progression. Violent and incestuous content has become more common:
+We can explore porn trends by converting titles to language embeddings.
 
-| |
-|---------|
-| ![A](analysis_results/trends/smoothed_rape_trend.png) |
+We find three distinct eras of titling: 2008-2009, 2010-2016, 2017-present. The last is characterized mainly by an emphasis on incest and other sexual violence.
 
-We observe three distinct eras of titling conventions: 2008-2009, 2010-2016, 2017-Present:
+Generally, titles are representative of actual video content.
 
-| |
-|---------|
-| ![A](analysis_results/tsne_years.png) |
-
-If we plot sexually violent terms like "woman being raped", "incest", and "torture porn", we observe much stronger alignment with the 2017-Present cluster:
-
-| |
-|---------|
-| ![A](analysis_results/tsne/sexual_violence.png) |
-
-What happened?
-
-Some of the effects are pure SEO - videos are labeled with sexually violent language, even if they are not themselves actually sexually violent. But the total trend reflects the actual video contents, which have become more intense to cater to more intense tastes of the highest spending, most engaged consumers.
-
-Broadly this is because of professionalization: a shift from amateur, Youtube-style porn to professional studios with an interest in the bottom line. Interestingly, this mimics the evolution of Youtube itself as well. A broad, internet-wide shift towards monetization might be benign elsewhere, but in the porn domain, becomes a race to the bottom of sexual violence.
-
-Political efforts may have contributed to locking in some aspects of this monetization trend. FOSTA-SESTA and sundry efforts by payment processors to limit porn exposure probably helped improve the conditions of the supply side and prevented videos of minors and rape from being uploaded. That's good! But it created an unintended consequence at the expense of the demand side: professional studios started to emphasize youth and violence.
-
-Explore more detailed data and methods below.
+We are close to semantic bedrock with respect to sexual violence: porn titles cannot become more sexually violent in their descriptions, because we lack the vocabulary.
 
 ## Data and Methods
 
@@ -308,6 +288,14 @@ For a simpler animated analysis, show or hide different clusters to observe how 
 | |
 |---------|
 | ![A](analysis_results/tsne/temporal_evolution.gif) |
+
+## Conclusions
+
+The trends reflect the increasingly intense tastes of the highest spending, most engaged consumers.
+
+Broadly this is because of professionalization: a shift from amateur, Youtube-style porn to professional studios with an interest in the bottom line. Interestingly, this mimics the evolution of Youtube itself as well. A broad, internet-wide shift towards monetization might be benign elsewhere, but in the porn domain, becomes a race to the bottom of sexual violence.
+
+For a longer editorial, see [here.](https://substack.com/@dhealy/p-152866191)
 
 ## Further Work
 
