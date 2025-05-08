@@ -60,6 +60,16 @@ To download more data, run "fetch_snapshots.py" in the "data_retrieval" director
 
 To work with embeddings, you will need an OpenAI API key. Set it with export OPENAI_API_KEY={...}.
 
+## Title Accuracy
+
+Do the titles reflect the actual contents of the videos?
+
+Generally: yes.
+
+You can verify by running "run_title_accuracy.py" in data_analysis, which will create a blank JSON of video titles with a blank "title_accuracy" field, to be filled in by a human reviewer.
+
+I conducted my own review, which you can find in "analysis_results/title_accuracy_logs"; many older titles have dead URLs, but of those that remain (typically more recent videos), I find that "pure SEO effects" are not very common, and that the title is a reasonable descriptor of the video contents.
+
 ## Calculating Yearly Centroids
 
 We calculate the representative porn for a year like so:

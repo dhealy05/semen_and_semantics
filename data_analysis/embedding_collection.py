@@ -3,6 +3,7 @@ import numpy as np
 from datetime import datetime, timedelta
 from sklearn.neighbors import NearestNeighbors
 from collections import defaultdict
+import random
 #
 from embedding_vector import *
 
@@ -41,6 +42,9 @@ class EmbeddingCollection:
 
         return [(self.embeddings[idx], dist)
                 for idx, dist in zip(indices[0], distances[0])]
+
+    def random_sample(self, n: int = 5):
+        return random.sample(self.embeddings, n)
 
     def get_average_title_length(self) -> float:
 
@@ -146,7 +150,7 @@ class EmbeddingCollection:
             top_collection.add_embedding(self.embeddings[idx])
 
         return top_collection
-        
+
     def analyze_yearly_distribution(self, full_collection: Optional['EmbeddingCollection'] = None) -> Dict[str, Dict[str, float]]:
         """
         Analyze the distribution of embeddings across years, accounting for different year sizes.
