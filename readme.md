@@ -42,13 +42,16 @@ To work with embeddings, you will need an OpenAI API key. Set it with export OPE
 
 ## Title Accuracy
 
-Do the titles reflect the actual contents of the videos?
+Do the titles reflect the actual contents of the videos? If the answer is no, analyzing video titles may not tell us much.
 
-Generally: yes.
+In order to construct an estimator of title accuracy, I provided tools for human reviewers to use in analysis. See "run_title_accuracy.py" and "analysis_results/title_accuracy_logs/readme" for more details. The gist of it is that you can generate a sample of videos by category, or year, or overall, then navigate to the link, and rate the accuracy on a scale of 1-5. You can then analyze your review and get results like so:
 
-You can verify by running "run_title_accuracy.py" in data_analysis, which will create a blank JSON of video titles with a blank "title_accuracy" field, to be filled in by a human reviewer.
+File: ../analysis_results/title_accuracy_logs/title_accuracy_2014.json
+Total samples: 10
+Video Not Available (Null): 7/10 Samples
+Average Score (for available videos): 5.00
 
-I conducted my own review, which you can find in "analysis_results/title_accuracy_logs"; many older titles have dead URLs, but of those that remain (typically more recent videos), I find that "pure SEO effects" are not very common, and that the title is a reasonable descriptor of the video contents.
+Many older titles have dead URLs, but of those that remain (typically more recent videos), I find that "pure SEO effects" are not very common, and that the title is a reasonable descriptor of the video contents.
 
 ## Calculating Yearly Centroids
 

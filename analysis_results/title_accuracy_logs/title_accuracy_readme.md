@@ -21,3 +21,25 @@ I have included my own review scores and accompanying metadata in the various *_
 Generally I find that the available titles reflect the contents. An exception would be index 3 of incest_title_accuracy.json, entitled "Cum in panties step sister", but which did not depict any incestuous content; in that case the "step sister" suffix was pure SEO.
 
 Playlists, which are collections of videos, I estimated based on the total contents.
+
+After review, you can run the "analyze_title_accuracy" function to see the total scores. Here's a sample for some of the provided files:
+
+File: ../analysis_results/title_accuracy_logs/title_accuracy_2014.json
+Total samples: 10
+Video Not Available (Null): 7/10 Samples
+Average Score (for available videos): 5.00
+
+File: ../analysis_results/title_accuracy_logs/incest_title_accuracy.json
+Total samples: 10
+Video Not Available (Null): 4/10 Samples
+Average Score (for available videos): 3.67
+
+File: ../analysis_results/title_accuracy_logs/overall_title_accuracy_0.json
+Total samples: 10
+Video Not Available (Null): 8/10 Samples
+Average Score (for available videos): 5.00
+
+Overall Statistics:
+Total samples across all files: 30
+Video Not Available (Null): 19/30 Samples
+Average Score (for available videos): 4.27
