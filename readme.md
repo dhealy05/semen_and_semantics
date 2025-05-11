@@ -10,13 +10,13 @@ and here's the average title for 2023:
 
 - "FAMILYXXX - "I Cant Resist My Stepsis Big Juicy Ass" (Mila Monet)"
 
-We can explore porn trends by converting titles to language embeddings.
+Why did this change happen? We can understand porn's progression by converting titles to language embeddings. I downloaded Internet Archive snapshots of "pornhub.com" from 2008 - 2023 and analyzed the embeddings of the titles on the main page.
 
-We find three distinct eras of titling: 2008-2009, 2010-2016, 2017-present. The last is characterized mainly by an emphasis on incest and other sexual violence.
+I found three distinct eras of titling: 2008-2009, 2010-2016, 2017-present. The current trend, since 2017, is characterized mainly by an emphasis on incest and other sexual violence.
 
-Generally, titles are representative of actual video content.
+Titles are generally representative of actual video content, and provide a reasonable heuristic for measuring actual content change, though some SEO effects exist.
 
-We are close to semantic bedrock with respect to sexual violence: porn titles cannot become more sexually violent in their descriptions, because we lack the vocabulary.
+The conclusion is a slightly ominous one: we are close to semantic bedrock with respect to sexual violence. Porn titles cannot become more sexually violent in their descriptions, because we lack the vocabulary.
 
 ## Data and Methods
 
